@@ -7,7 +7,7 @@ RUN apk --update add libtool automake autoconf nasm gcc make g++ zlib-dev
 RUN npm install -g next \
     && export NODE_OPTIONS=--openssl-legacy-provider \
     && cd /data/release/zencode/ \
-    && npm install \
+    && npm i \
     && npm run build
 
 WORKDIR /data/release/zencode/
