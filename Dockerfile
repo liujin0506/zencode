@@ -4,6 +4,7 @@ COPY . /data/release/transform/
 
 RUN npm install -g next \
     && yarn add --dev typescript @types/react @types/node \
+    && yarn install \
     && export NODE_OPTIONS=--openssl-legacy-provider \
     && cd /data/release/transform/ \
     && npm run build
