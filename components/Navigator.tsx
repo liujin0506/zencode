@@ -72,7 +72,9 @@ export default function Navigator() {
         })}
       </Pane>
 
-      <Pane borderTop></Pane>
+      <Pane borderTop className="miit-box">
+        <a className="miit" rel="nofollow" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备13009532号-7 🍺🍺🍺</a>
+      </Pane>
     </Pane>
   );
 }

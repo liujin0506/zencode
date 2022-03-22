@@ -31,6 +31,7 @@ export default class MyDocument extends Document<DocumentProps> {
             content="liujin0506@qq.com"
           />
           <style dangerouslySetInnerHTML={{ __html: css }} />
+          <script src="https://hm.baidu.com/hm.js?e976e0af4a4b2d8948dc1ce7b1fc13e6"></script>
         </Head>
 
         <body>

@@ -85,3 +85,14 @@ html {
   color: #fff;
   letter-spacing: 1px;
 }
+
+.miit-box {
+  padding: 5px;
+  text-align: center;
+}
+.miit {
+  color: #425A70;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 14px;
+}
