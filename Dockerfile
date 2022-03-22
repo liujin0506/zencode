@@ -2,10 +2,9 @@ FROM node:17.7.2-alpine3.15
 
 COPY . /data/release/zencode/
 
-RUN apk add autoconf
+RUN apk add libtool automake autoconf nasm
 
-RUN npm config set registry https://registry.npmmirror.com \
-    && npm install -g next \
+RUN npm install -g next \
     && export NODE_OPTIONS=--openssl-legacy-provider \
     && cd /data/release/zencode/ \
     && npm install \
