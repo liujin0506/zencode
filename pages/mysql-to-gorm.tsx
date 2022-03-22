@@ -1,0 +1,107 @@
+import ConversionPanel from "@components/ConversionPanel";
+import { EditorPanelProps } from "@components/EditorPanel";
+import Form, { InputType } from "@components/Form";
+import { useSettings } from "@hooks/useSettings";
+import { useCallback } from "react";
+import * as React from "react";
+import request from "@utils/request";
+
+interface Settings {
+  col_prefix: string;
+  table_prefix: string;
+  json_tag: boolean;
+}
+
+const formFields = [
+  {
+    type: InputType.TEXT_INPUT,
+    key: "col_prefix",
+    label: "字段前缀"
+  },
+  {
+    type: InputType.TEXT_INPUT,
+    key: "table_prefix",
+    label: "表前缀"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "json_tag",
+    label: "是否包含 Json 标签"
+  },
+  {
+    type: InputType.TEXT_INPUT,
+    key: "package",
+    label: "Gorm包名"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "no_null",
+    label: "是否使用 Null 类型"
+  },
+  {
+    type: InputType.SELECT,
+    key: "null_style",
+    label: "Null 类型",
+    options: [
+      { label: "sql.NullXxx", value: "sql" },
+      { label: "*xxxx", value: "ptr" }
+    ]
+  },
+  {
+    type: InputType.SWITCH,
+    key: "gorm_type",
+    label: "是否包含字段类型"
+  }
+];
+
+export default function JsonToFormatter() {
+  const name = "Gorm";
+
+  const [settings, setSettings] = useSettings(name, {
+    col_prefix: "",
+    table_prefix: "",
+    json_tag: true,
+    package: "",
+    no_null: false,
+    null_style: "sql",
+    gorm_type: false
+  });
+
+  const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
+    ({ open, toggle }) => {
+      return (
+        <Form<Settings>
+          title={name}
+          onSubmit={setSettings}
+          open={open}
+          toggle={toggle}
+          formsFields={formFields}
+          initialValues={settings}
+        />
+      );
+    },
+    []
+  );
+
+  const transformer = useCallback(
+    ({ value }) =>
+      request("/api/mysql-to-gorm", {
+        value,
+        settings
+      }),
+    [settings]
+  );
+
+  return (
+    <ConversionPanel
+      transformer={transformer}
+      editorTitle="MySQL Schema"
+      editorLanguage="sql"
+      editorDefaultValue={"mysqlSchema"}
+      resultTitle="Gorm"
+      resultLanguage={"go"}
+      editorSettingsElement={getSettingsElement}
+      settings={settings}
+    />
+  );
+}
