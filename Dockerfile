@@ -2,7 +2,7 @@ FROM node:17.7.2-alpine3.15
 
 COPY . /data/release/zencode/
 
-RUN apk add libtool automake autoconf nasm
+RUN apk add libtool automake autoconf nasm gcc
 
 RUN npm install -g next \
     && export NODE_OPTIONS=--openssl-legacy-provider \
