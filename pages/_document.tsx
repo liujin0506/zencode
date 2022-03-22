@@ -23,12 +23,12 @@ export default class MyDocument extends Document<DocumentProps> {
     const { css, hydrationScript } = this.props;
 
     return (
-      <Html>
+      <Html lang="zh-CN">
         <Head>
           <meta charSet="utf-8" />
           <meta
-            name="google-site-verification"
-            content="bjJSOEahdert-7mwVScrwTTUVR3nSe0bEj5YjevUNn0"
+            name="author"
+            content="liujin0506@qq.com"
           />
           <style dangerouslySetInnerHTML={{ __html: css }} />
         </Head>

@@ -1,56 +1,66 @@
-import * as React from "react";
-import { SvgConverter } from "@components/SvgConverter";
-import { useState } from "react";
-import { defaultSettings, formFields } from "@constants/svgoConfig";
+import ConversionPanel from "@components/ConversionPanel";
+import { EditorPanelProps } from "@components/EditorPanel";
+import Form, { InputType } from "@components/Form";
+import { useSettings } from "@hooks/useSettings";
 import { useCallback } from "react";
-import { Transformer } from "@components/ConversionPanel";
-import isSvg from "is-svg";
-import { getWorker } from "@utils/workerWrapper";
-import SvgrWorker from "@workers/svgr.worker";
-import SvgoWorker from "@workers/svgo.worker";
+import * as React from "react";
 
-let prettier, svgo, svgr;
-export default function Index() {
-  const name = "SVG to JSX";
-  const [settings, setSettings] = useState(defaultSettings);
-  const [optimizedValue, setOptimizedValue] = useState("");
+interface Settings {
+  compress: boolean;
+}
 
-  const transformer = useCallback<Transformer>(
-    async ({ value }) => {
-      if (!isSvg(value)) throw new Error("This is not a valid svg code.");
+const formFields = [
+  {
+    type: InputType.SWITCH,
+    key: "compress",
+    label: "Compress Json"
+  }
+];
 
-      svgr = svgr || getWorker(SvgrWorker);
-      svgo = svgo || getWorker(SvgoWorker);
+export default function JsonToFormatter() {
+  const name = "BEAUTIFUL JSON";
 
-      let _value = value;
+  const [settings, setSettings] = useSettings(name, {
+    compress: false
+  });
 
-      if (settings.optimizeSvg) {
-        _value = await svgo.send({
-          value,
-          settings
-        });
-      }
+  const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
+    ({ open, toggle }) => {
+      return (
+        <Form<Settings>
+          title={name}
+          onSubmit={setSettings}
+          open={open}
+          toggle={toggle}
+          formsFields={formFields}
+          initialValues={settings}
+        />
+      );
+    },
+    []
+  );
 
-      setOptimizedValue(_value);
-
-      _value = await svgr.send({
-        value: _value
-      });
-
-      return _value;
+  const transformer = useCallback(
+    ({ value }) => {
+      return prettifyJson(value);
     },
     [settings]
   );
 
   return (
-    <SvgConverter
+    <ConversionPanel
       transformer={transformer}
-      formFields={formFields(defaultSettings)}
-      setSettings={setSettings}
-      optimizedValue={optimizedValue}
+      editorTitle="JSON"
+      editorLanguage="json"
+      editorDefaultValue={"jsonRaw"}
+      resultTitle="格式化JSON"
+      resultLanguage={"json"}
+      editorSettingsElement={getSettingsElement}
       settings={settings}
-      name={name}
-      resultTitle={"JSX"}
     />
   );
+}
+
+export async function prettifyJson(value: string) {
+  return JSON.stringify(JSON.parse(value), null, 1);
 }

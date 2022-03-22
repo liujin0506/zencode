@@ -2,7 +2,7 @@
   "version": 2,
   "redirects": [
     {
-      "source": "/svg-to-jsx",
+      "source": "/json-to-formatter",
       "destination": "/"
     },
     {

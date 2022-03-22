@@ -8,7 +8,7 @@ export const categorizedRoutes = [
     content: [
       {
         label: "JSON 格式化",
-        path: "/json-to-formatter",
+        path: "/",
         title: "Transform | Json Formatter."
       },
       {
