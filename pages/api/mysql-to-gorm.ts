@@ -4,7 +4,6 @@ import request from "@utils/request";
 export default (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { value, settings } = req.body;
-    console.log(settings);
     const x = request("http://tool.storyun.com/api/v1/sql2gorm", {
       sql: value,
       col_prefix: settings.col_prefix,
