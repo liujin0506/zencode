@@ -20,7 +20,7 @@ import {
   Tooltip,
   toaster
 } from "evergreen-ui";
-import tailwindResolve from "tailwindcss1/resolveConfig";
+import tailwindResolve from "tailwindcss/resolveConfig";
 import dynamic from "next/dynamic";
 
 const Monaco = dynamic(() => import("../components/Monaco"), {

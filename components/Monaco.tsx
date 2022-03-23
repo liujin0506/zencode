@@ -1,10 +1,13 @@
 import React from "react";
 import Editor from "@monaco-editor/react";
+import { loader } from "@monaco-editor/react";
 import { Pane, Spinner } from "evergreen-ui";
 
 export function processSize(size) {
   return !/^\d+$/.test(size) ? size : `${size}px`;
 }
+
+loader.config({ paths: { vs: "static/monaco-editor" } });
 
 interface MonacoProps {
   theme?: string;

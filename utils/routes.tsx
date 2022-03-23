@@ -123,9 +123,7 @@ export const routes = flatten(
     // @ts-ignore
     a.content.map(x => {
       const _label =
-        a.category.toLowerCase() !== "others"
-          ? `${a.category} ${x.label}`
-          : x.label;
+        a.category.toLowerCase() !== "others" ? `${x.label}` : x.label;
       return {
         ...x,
         category: a.category,
