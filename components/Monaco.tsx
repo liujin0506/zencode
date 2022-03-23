@@ -7,7 +7,7 @@ export function processSize(size) {
   return !/^\d+$/.test(size) ? size : `${size}px`;
 }
 
-loader.config({ paths: { vs: "static/monaco-editor" } });
+loader.config({ paths: { vs: "static/vs" } });
 
 interface MonacoProps {
   theme?: string;
