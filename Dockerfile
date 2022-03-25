@@ -2,8 +2,12 @@ FROM node:17.7.2-alpine3.15
 
 COPY . /data/release/zencode/
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
-RUN apk --update add libtool automake autoconf nasm gcc make g++ zlib-dev git
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+    && apk --update add libtool automake autoconf nasm gcc make g++ zlib-dev git supervisor \
+    && echo_supervisord_conf \
+    && mkdir -p /etc/supervisor.d/
+
+COPY zencode.ini /etc/supervisor.d/
 
 RUN npm install -g next \
     && export NODE_OPTIONS=--openssl-legacy-provider \
@@ -14,4 +18,4 @@ RUN npm install -g next \
 WORKDIR /data/release/zencode/
 EXPOSE 3000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "supervisord", "-c", "/etc/supervisord.conf" ]
