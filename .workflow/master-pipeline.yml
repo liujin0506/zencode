@@ -21,7 +21,7 @@ stages:
         repository: hub.docker.com
         username: liujin0506
         password: lj4569119
-        tag: ${GITEE_PIPELINE_BUILD_NUMBER}
+        tag: zencode:${GITEE_PIPELINE_BUILD_NUMBER}
         dockerfile: ./Dockerfile
         isCache: true
   - name: stage-45d69245
