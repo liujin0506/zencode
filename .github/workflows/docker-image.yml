@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag zencode:$(date +%s)
+
+    - name: Login TKE Registry
+      run: |
+        docker login -u ${{ secrets.DOCKER_ACCOUNT_ID }} -p '${{ secrets.DOCKER_PASSWORD }}' ${IMAGE_URL}
+
+    # Push the Docker image to TKE Registry
+    - name: Publish
+      run: |
+        docker push zencode:$(date +%s)
