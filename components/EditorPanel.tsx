@@ -248,8 +248,13 @@ export default function EditorPanel({
             }}
             target="_blank"
           >
-            <Tooltip content={packageDetails.name}>
-              <Npm />
+            <Tooltip content={"查看文档: " + packageDetails.name}>
+              <IconButton
+                height={28}
+                icon="link"
+                intent="none"
+                marginRight={10}
+              />
             </Tooltip>
           </a>
         )}

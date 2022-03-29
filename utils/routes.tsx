@@ -25,7 +25,7 @@ export const categorizedRoutes = [
       },
       {
         label: "JSON To Protobuf",
-        path: "json-to-protobuf",
+        path: "/json-to-protobuf",
         packageName: "json-protobuf",
         packageUrl: "https://github.com/okdistribute/jsonschema-protobuf"
       },
@@ -67,7 +67,7 @@ export const categorizedRoutes = [
       {
         label: "MySQL Schema to Gorm",
         path: "/mysql-to-gorm",
-        packageName: "xml-js",
+        packageName: "Gorm",
         packageUrl: "https://gorm.io/zh_CN/docs/models.html"
       }
     ]

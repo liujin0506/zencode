@@ -46,11 +46,9 @@ export default function App(props) {
     <>
       {router.pathname === "/" || !router.pathname ? (
         <Meta
-          title={"Zencode"}
+          title={"Json 格式化"}
           url={`https://zencode.cc${router.pathname}`}
-          description={
-            "代码转换工具."
-          }
+          description={"Json 格式化."}
         />
       ) : (
         <Meta
