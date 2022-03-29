@@ -57,7 +57,7 @@ export default function JsonToProtobuf() {
       editorLanguage="json"
       editorDefaultValue="json"
       resultTitle="Protobuf"
-      resultLanguage={"text"}
+      resultLanguage={"proto"}
       editorSettingsElement={getSettingsElement}
       settings={settings}
     />
