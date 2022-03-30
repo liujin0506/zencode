@@ -27,10 +27,7 @@ RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build
 # RUN npm run build
 
 # Production image, copy all the files and run next
-FROM node:17-alpine AS runner
-
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
-RUN apk add --no-cache supervisor
+FROM liujin0506/next_runner:1 AS runner
 
 WORKDIR /app
 
