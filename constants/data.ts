@@ -452,3 +452,6 @@ export const mysqlSchema = `CREATE TABLE IF NOT EXISTS t_person_info(
   birth DATE, 
   comment TEXT
  ) ENGINE = InnoDB;`;
+
+export const text = `zencode`;
+export const base64Encode = `emVuY29kZQ==`;

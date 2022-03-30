@@ -55,7 +55,7 @@ const formFields = [
 ];
 
 export default function JsonToFormatter() {
-  const name = "Gorm";
+  const name = "MysqlToGorm";
 
   const [settings, setSettings] = useSettings(name, {
     col_prefix: "",

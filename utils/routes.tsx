@@ -73,6 +73,30 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "Encrypt",
+    iconName: "link",
+    content: [
+      {
+        label: "Base64 Encode",
+        path: "/encrypt_base64_encode",
+        packageName: "Base64",
+        packageUrl: ""
+      },
+      {
+        label: "Base64 Decode",
+        path: "/encrypt_base64_decode",
+        packageName: "Base64",
+        packageUrl: ""
+      },
+      {
+        label: "Md5",
+        path: "/encrypt_md5",
+        packageName: "Md5",
+        packageUrl: ""
+      }
+    ]
+  },
+  {
     category: "Others",
     iconName: "",
     content: [
