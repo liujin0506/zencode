@@ -55,6 +55,15 @@ const config = {
         ]
       }
     ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/json-to-formatter",
+        permanent: false
+      }
+    ];
   }
 };
 

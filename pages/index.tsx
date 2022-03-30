@@ -13,11 +13,11 @@ const formFields = [
   {
     type: InputType.SWITCH,
     key: "compress",
-    label: "Compress Json"
+    label: "去除转义"
   }
 ];
 
-export default function JsonToFormatter() {
+export default function Index() {
   const name = "BEAUTIFUL JSON";
 
   const [settings, setSettings] = useSettings(name, {
@@ -42,7 +42,7 @@ export default function JsonToFormatter() {
 
   const transformer = useCallback(
     ({ value }) => {
-      return prettifyJson(value);
+      return prettifyJson(value, settings);
     },
     [settings]
   );
@@ -61,6 +61,9 @@ export default function JsonToFormatter() {
   );
 }
 
-export async function prettifyJson(value: string) {
+export async function prettifyJson(value: string, settings: Settings) {
+  if (settings.compress) {
+    value = value.replace(/\\\\/g, "\\").replace(/\\\"/g, '"');
+  }
   return JSON.stringify(JSON.parse(value), null, 1);
 }

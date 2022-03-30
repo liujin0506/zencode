@@ -8,8 +8,8 @@ export const categorizedRoutes = [
     content: [
       {
         label: "JSON 格式化",
-        path: "/",
-        title: "Transform | Json Formatter."
+        path: "/json-to-formatter",
+        title: "Zencode | Json Formatter."
       },
       {
         label: "JSON To MySQL Schema",

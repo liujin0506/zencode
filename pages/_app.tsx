@@ -69,6 +69,18 @@ export default function App(props) {
         <Pane flex={1} display="flex" paddingX={20} className="logo-transform">
           <i className="logo-font">ZenCode</i>
         </Pane>
+        <Pane display="flex" alignItems={"center"}>
+          <a
+            href="https://github.com/liujin0506/zencode/issues"
+            target="_blank"
+            style={{
+              color: "#fff",
+              textDecoration: "none"
+            }}
+          >
+            Issues
+          </a>
+        </Pane>
       </Pane>
       <Pane display="flex" flexDirection="row">
         <Navigator />
