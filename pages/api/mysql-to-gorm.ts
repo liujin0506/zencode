@@ -12,7 +12,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       package: settings.package,
       no_null: settings.no_null,
       null_style: settings.null_style,
-      gorm_type: settings.gorm_type
+      gorm_type: settings.gorm_type,
+      include_default: settings.include_default,
+      include_not_null: settings.include_not_null,
+      primary_key: settings.primary_key,
+      auto_incr: settings.auto_incr
     }).then(x => {
       if (x.code === 200) {
         res.status(200).send(x.data.FileStr);

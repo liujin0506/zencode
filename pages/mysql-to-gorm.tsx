@@ -51,6 +51,26 @@ const formFields = [
     type: InputType.SWITCH,
     key: "gorm_type",
     label: "是否包含字段类型"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "include_default",
+    label: "是否包含 default"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "include_not_null",
+    label: "是否包含 NOT NULL"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "primary_key",
+    label: "是否包含 Primary Key"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "auto_incr",
+    label: "是否包含 AUTO_INCREMENT"
   }
 ];
 
@@ -64,7 +84,11 @@ export default function JsonToFormatter() {
     package: "",
     no_null: false,
     null_style: "sql",
-    gorm_type: false
+    gorm_type: false,
+    include_not_null: true,
+    include_default: true,
+    primary_key: true,
+    auto_incr: true
   });
 
   const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
