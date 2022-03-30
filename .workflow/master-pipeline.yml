@@ -1,0 +1,29 @@
+version: '1.0'
+name: pipeline-20220330
+displayName: TKE发布
+triggers:
+  trigger: auto
+  push:
+    branches:
+      precise:
+        - master
+stages:
+  - name: stage-a7587395
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@docker
+        name: build_docker
+        displayName: 镜像构建
+        type: account
+        repository: hub.docker.com
+        username: liujin0506@qq.com
+        password: lj4569119
+        tag: liujin0506/zencode:${GITEE_PIPELINE_BUILD_NUMBER}
+        dockerfile: ./Dockerfile
+        isCache: true
+permissions:
+  - role: admin
+    members: []
