@@ -108,7 +108,7 @@ export default function JsonToFormatter() {
       editorProps={{
         topNotifications: ({ toggleSettings }) => (
           <Alert
-            intent="warning"
+            intent="success"
             backgroundColor="#FEF8E7"
             title={
               <>
