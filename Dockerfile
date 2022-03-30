@@ -24,6 +24,7 @@ COPY . .
 
 RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build
 
+
 # If using npm comment out above and use below instead
 # RUN npm run build
 
