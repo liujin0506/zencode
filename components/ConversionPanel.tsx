@@ -96,7 +96,11 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         });
 
         let prettyResult = result;
-        if (!settings.notPrettier) {
+        if (
+          settings == undefined ||
+          settings.notPrettier == undefined ||
+          !settings.notPrettier
+        ) {
           prettyResult = await prettierWorker.send({
             value: result,
             language: resultLanguage

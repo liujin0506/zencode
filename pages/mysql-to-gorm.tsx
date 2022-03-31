@@ -1,3 +1,4 @@
+import { Alert, Heading } from "evergreen-ui";
 import ConversionPanel from "@components/ConversionPanel";
 import { EditorPanelProps } from "@components/EditorPanel";
 import Form, { InputType } from "@components/Form";
@@ -126,6 +127,28 @@ export default function JsonToFormatter() {
       resultLanguage={"go"}
       editorSettingsElement={getSettingsElement}
       settings={settings}
+      editorProps={{
+        topNotifications: ({ toggleSettings }) => (
+          <Alert
+            intent="success"
+            backgroundColor="#FEF8E7"
+            title={
+              <>
+                支持更多选项, 您可以在{""}
+                <Heading
+                  size={400}
+                  is="a"
+                  color={"blue"}
+                  onClick={toggleSettings}
+                >
+                  转换配置
+                </Heading>
+                进行切换
+              </>
+            }
+          />
+        )
+      }}
     />
   );
 }
