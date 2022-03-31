@@ -13,6 +13,10 @@ export const Meta = ({ title, keywork, description, url }) => {
       <meta name="og:description" content={description} />
       <meta name="og:image" content={"https://transform.tools/cover.png"} />
       <meta name="og:type" content="website" />
+      <meta
+        name="google-site-verification"
+        content="gKxBWPnQmsbDgeECrmnYoZqVsu52BHXnIbC_hJrNdoo"
+      />
       <link rel="manifest" href="/static/site.webmanifest" />
     </Head>
   );
