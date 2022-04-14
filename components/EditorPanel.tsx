@@ -5,6 +5,7 @@ import {
   HTMLInputEvent,
   IconButton,
   Pane,
+  Dialog,
   Popover,
   TextInput,
   toaster,
@@ -13,7 +14,6 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import copy from "clipboard-copy";
-import Npm from "@assets/svgs/Npm";
 import { useDropzone } from "react-dropzone";
 
 export interface EditorPanelProps {
@@ -33,7 +33,7 @@ export interface EditorPanelProps {
     toggleSettings: () => void;
     isSettingsOpen: boolean;
   }) => React.ReactNode;
-  previewElement?: (value: string) => React.ReactNode;
+  previewElement?: (value: string) => string;
   acceptFiles?: string | string[];
   packageDetails?: {
     name: string;
@@ -58,14 +58,16 @@ export default function EditorPanel({
   defaultValue,
   onChange,
   id,
-  packageDetails
+  packageDetails,
+  previewElement
 }: EditorPanelProps) {
   const [showSettingsDialogue, setSettingsDialog] = useState(false);
+  const [showPreviewDialogue, setPreviewDialog] = useState(false);
   const [value, setValue] = useState(defaultValue);
   const [fetchingUrl, setFetchingUrl] = useState("");
 
   const options = {
-    fontSize: 14,
+    fontSize: 13,
     readOnly: !editable,
     codeLens: false,
     fontFamily: "Menlo, Consolas, monospace, sans-serif",
@@ -270,6 +272,34 @@ export default function EditorPanel({
             复制
           </Button>
         )}
+        {previewElement && (
+          <Button
+            appearance="default"
+            marginRight={10}
+            iconBefore="eye-open"
+            onClick={() => {
+              setPreviewDialog(true);
+            }}
+            height={28}
+          >
+            预览
+          </Button>
+        )}
+        <Dialog
+          isShown={showPreviewDialogue}
+          title="预览"
+          hasCancel={false}
+          confirmLabel={"确定"}
+          onConfirm={() => {
+            setPreviewDialog(false);
+          }}
+          hasClose={false}
+          width={"900px"}
+        >
+          {previewElement && (
+            <div dangerouslySetInnerHTML={{ __html: previewElement(value) }} />
+          )}
+        </Dialog>
       </Pane>
 
       <div

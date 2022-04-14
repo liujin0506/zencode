@@ -455,3 +455,12 @@ export const mysqlSchema = `CREATE TABLE IF NOT EXISTS t_person_info(
 
 export const text = `zencode`;
 export const base64Encode = `emVuY29kZQ==`;
+
+export const proto = `message DeliverList {
+  uint32 id = 1; // 序号
+  string type = 2; // 费用类型
+  string remark = 3; // 交付项描述
+  string coaCode = 4; // COA产品编码
+  string coaName = 5; // COA产品
+  uint32 payAmt = 6; // 付款金额（分）
+}`;

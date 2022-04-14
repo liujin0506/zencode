@@ -81,6 +81,20 @@ export const categorizedRoutes = [
     ]
   },
   {
+    category: "ProtocolBuf",
+    iconName: "",
+    content: [
+      {
+        label: "Proto to Doc",
+        path: "/proto-to-doc",
+        packageName: "Proto",
+        packageUrl: "https://github.com/golang/protobuf",
+        keyword: "在线,SQL,SQL 转换,Gorm",
+        desc: "在线SQL转换工具, SQL转换为Gorm"
+      }
+    ]
+  },
+  {
     category: "Encrypt",
     iconName: "link",
     content: [

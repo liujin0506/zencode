@@ -5,7 +5,7 @@ import { markdown } from "markdown";
 
 export default function MarkdownToHtml() {
   const transformer = useCallback(({ value }) => {
-    return markdown.toHTML(value);
+    return markdown.toHTML(value, "Maruku");
   }, []);
 
   return (
@@ -16,9 +16,9 @@ export default function MarkdownToHtml() {
       resultTitle="HTML"
       resultLanguage={"html"}
       resultEditorProps={{
-        previewElement: value => (
-          <div dangerouslySetInnerHTML={{ __html: value }} />
-        )
+        previewElement: value => {
+          return value;
+        }
       }}
     />
   );
