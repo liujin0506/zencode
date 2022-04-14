@@ -21,7 +21,6 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
   transformer,
   resultTitle,
   formFields,
-  optimizedValue,
   settings,
   setSettings
 }) => {
@@ -72,56 +71,7 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 </>
               }
             />
-          ),
-        previewElement: value => {
-          return `
-          <Pane display="flex" flexDirection="row" flex={1}>
-            <Pane display={"flex"} flex={1} position="relative">
-              <img
-                style={{
-                  flex: 1,
-                  width: "100%",
-                  borderRight: "1px solid #eee"
-                }}
-                src={svgToDataUrl(value)}
-                alt="original"
-              />
-
-              <Badge
-                position="absolute"
-                bottom={10}
-                right={10}
-                color="green"
-                isSolid
-              >
-                Original
-              </Badge>
-            </Pane>
-            <Pane display={"flex"} flex={1} position="relative">
-              {optimizedValue && (
-                <img
-                  style={{
-                    flex: 1,
-                    width: "100%"
-                  }}
-                  src={svgToDataUrl(optimizedValue)}
-                  alt="optimized"
-                />
-              )}
-
-              <Badge
-                position="absolute"
-                bottom={10}
-                right={10}
-                color="green"
-                isSolid
-              >
-                Result
-              </Badge>
-            </Pane>
-          </Pane>`;
-        },
-        acceptFiles: "image/svg+xml"
+          )
       }}
     />
   );
