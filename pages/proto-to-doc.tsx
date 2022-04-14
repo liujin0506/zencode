@@ -82,7 +82,7 @@ export default function ProtoToDoc() {
           comment: comment
         });
         markdownArr.push(
-          "| " + parts[1] + " | " + parts[0] + " | - | " + comment + " |  |"
+          "| " + parts[1] + " | " + parts[0] + " | - | " + comment + " | - |"
         );
       });
     }
@@ -105,10 +105,9 @@ export default function ProtoToDoc() {
       settings={settings}
       resultEditorProps={{
         previewElement: value => {
-          return markdown.toHTML(value, "Maruku");
+          return markdown.toHTML(value, "Maruku") + "<br />";
         }
       }}
-      // htmlString={settings.html}
     />
   );
 }

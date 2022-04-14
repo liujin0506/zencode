@@ -293,6 +293,9 @@ export default function EditorPanel({
           onConfirm={() => {
             setPreviewDialog(false);
           }}
+          onCloseComplete={() => {
+            setPreviewDialog(false);
+          }}
           hasClose={false}
           width={"900px"}
         >
