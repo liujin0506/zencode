@@ -73,7 +73,8 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
               }
             />
           ),
-        previewElement: value => (
+        previewElement: value => {
+          return `
           <Pane display="flex" flexDirection="row" flex={1}>
             <Pane display={"flex"} flex={1} position="relative">
               <img
@@ -118,8 +119,8 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 Result
               </Badge>
             </Pane>
-          </Pane>
-        ),
+          </Pane>`;
+        },
         acceptFiles: "image/svg+xml"
       }}
     />
