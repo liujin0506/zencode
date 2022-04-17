@@ -285,24 +285,28 @@ export default function EditorPanel({
             预览
           </Button>
         )}
-        <Dialog
-          isShown={showPreviewDialogue}
-          title="预览"
-          hasCancel={false}
-          confirmLabel={"确定"}
-          onConfirm={() => {
-            setPreviewDialog(false);
-          }}
-          onCloseComplete={() => {
-            setPreviewDialog(false);
-          }}
-          hasClose={false}
-          width={"900px"}
-        >
-          {previewElement && (
-            <div dangerouslySetInnerHTML={{ __html: previewElement(value) }} />
-          )}
-        </Dialog>
+        {previewElement && (
+          <Dialog
+            isShown={showPreviewDialogue}
+            title="预览"
+            hasCancel={false}
+            confirmLabel={"确定"}
+            onConfirm={() => {
+              setPreviewDialog(false);
+            }}
+            onCloseComplete={() => {
+              setPreviewDialog(false);
+            }}
+            hasClose={false}
+            width={"900px"}
+          >
+            {previewElement && (
+              <div
+                dangerouslySetInnerHTML={{ __html: previewElement(value) }}
+              />
+            )}
+          </Dialog>
+        )}
       </Pane>
 
       <div
