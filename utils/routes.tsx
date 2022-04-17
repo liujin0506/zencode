@@ -89,8 +89,16 @@ export const categorizedRoutes = [
         path: "/proto-to-doc",
         packageName: "Proto",
         packageUrl: "https://github.com/golang/protobuf",
-        keyword: "在线,SQL,SQL 转换,Gorm",
-        desc: "在线SQL转换工具, SQL转换为Gorm"
+        keyword: "在线,PB,Proto 转换,Gorm",
+        desc: "在线生成proto文档"
+      },
+      {
+        label: "Proto 排序",
+        path: "/proto-to-reorder",
+        packageName: "Proto",
+        packageUrl: "https://github.com/golang/protobuf",
+        keyword: "在线,PB,Proto 转换,Gorm",
+        desc: "在线生成proto文档"
       }
     ]
   },

@@ -464,3 +464,12 @@ export const proto = `message DeliverList {
   string coaName = 5; // COA产品
   uint32 payAmt = 6; // 付款金额（分）
 }`;
+
+export const protoReorder = `message DeliverList {
+  uint32 id = 1; // 序号
+  string type = 1; // 费用类型
+  string remark = 1; // 交付项描述
+  string coaCode = 1; // COA产品编码
+  string coaName = 1; // COA产品
+  uint32 payAmt = 1; // 付款金额（分）
+}`;

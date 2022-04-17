@@ -54,6 +54,19 @@ export default function ProtoToDoc() {
           markdownArr.push("| 名称 | 类型 | 是否必填 | 备注 | 其他信息 |");
           markdownArr.push("| :--- | :---: | :---: | :--- | --- |");
         }
+        let required = "否";
+        let extra = "";
+        if (element.indexOf("validate") != -1) {
+          let reg = /\[\(validate.*\}\];/;
+          let regArr = reg.exec(element);
+          if (regArr.length > 0) {
+            extra = regArr[0];
+            element = element.replace(extra, "");
+            if (extra.indexOf("min") != -1 || extra.indexOf("gt") != -1) {
+              required = "是";
+            }
+          }
+        }
         if (element.indexOf("}") != -1) {
           markdownArr.push("");
           markdownArr.push("");
@@ -65,6 +78,10 @@ export default function ProtoToDoc() {
         let parts = element.trim().split(/\s+/);
         if (parts.length < 4) {
           return;
+        }
+        if (parts[0] == "required") {
+          parts.shift();
+          required = "是";
         }
         if (parts[0] == "repeated") {
           parts.shift();
@@ -82,7 +99,17 @@ export default function ProtoToDoc() {
           comment: comment
         });
         markdownArr.push(
-          "| " + parts[1] + " | " + parts[0] + " | - | " + comment + " | - |"
+          "| " +
+            parts[1] +
+            " | " +
+            parts[0] +
+            " | " +
+            required +
+            " | " +
+            comment +
+            " | " +
+            extra +
+            " |"
         );
       });
     }
