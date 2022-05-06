@@ -7,7 +7,12 @@ export function processSize(size) {
   return !/^\d+$/.test(size) ? size : `${size}px`;
 }
 
-loader.config({ paths: { vs: "static/vs" } });
+loader.config({
+  paths: {
+    vs:
+      "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/monaco-editor/0.32.1/min/vs"
+  }
+});
 
 interface MonacoProps {
   theme?: string;
