@@ -41,6 +41,12 @@ export interface EditorPanelProps {
   };
 }
 
+export interface TransformResult {
+  result?: string;
+  prettier?: boolean;
+  err?: string;
+}
+
 const Monaco = dynamic(() => import("../components/Monaco"), {
   ssr: false
 });

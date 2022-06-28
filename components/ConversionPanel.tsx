@@ -1,5 +1,8 @@
 import { Pane, Alert, Spinner } from "evergreen-ui";
-import EditorPanel, { EditorPanelProps } from "@components/EditorPanel";
+import EditorPanel, {
+  EditorPanelProps,
+  TransformResult
+} from "@components/EditorPanel";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Language, useData } from "@hooks/useData";
@@ -21,7 +24,7 @@ function getEditorLanguage(lang: Language) {
 export type Transformer = (args: {
   value: string;
   splitEditorValue?: string;
-}) => Promise<string>;
+}) => Promise<string | TransformResult>;
 
 export interface ConversionPanelProps {
   splitTitle?: string;
@@ -95,12 +98,18 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
           splitEditorValue: splitTitle ? splitValue : undefined
         });
 
-        let prettyResult = result;
-        if (
-          settings == undefined ||
-          settings.notPrettier == undefined ||
-          !settings.notPrettier
-        ) {
+        let prettyResult = "";
+        let prettier = true;
+        let errMsg = "";
+        if (typeof result == "string") {
+          prettyResult = result;
+        } else {
+          prettyResult = result.result;
+          prettier = result.prettier;
+          errMsg = result.err;
+          console.log(result);
+        }
+        if (prettier) {
           prettyResult = await prettierWorker.send({
             value: result,
             language: resultLanguage
@@ -108,7 +117,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         }
 
         setResult(prettyResult);
-        setMessage("");
+        setMessage(errMsg);
       } catch (e) {
         console.error(e);
         setMessage(e.message);

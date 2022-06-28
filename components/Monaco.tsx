@@ -10,8 +10,9 @@ export function processSize(size) {
 loader.config({
   paths: {
     vs:
-      "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/monaco-editor/0.32.1/min/vs"
-  }
+      "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/monaco-editor/0.33.0-dev.20220228/min/vs"
+  },
+  "vs/nls": { availableLanguages: {} }
 });
 
 interface MonacoProps {

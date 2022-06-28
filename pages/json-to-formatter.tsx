@@ -1,15 +1,15 @@
 import ConversionPanel from "@components/ConversionPanel";
-import { EditorPanelProps } from "@components/EditorPanel";
+import { EditorPanelProps, TransformResult } from "@components/EditorPanel";
 import Form, { InputType } from "@components/Form";
 import { useSettings } from "@hooks/useSettings";
 import { useCallback } from "react";
 import * as React from "react";
-import { Alert, Badge, Heading, Pane } from "evergreen-ui";
+import { Alert, Heading } from "evergreen-ui";
+import { FmtJson, FormatOption } from "@utils/fmtjson";
 
 interface Settings {
   compress: boolean;
   unEscape: boolean;
-  notPrettier: boolean;
 }
 
 const formFields = [
@@ -26,12 +26,11 @@ const formFields = [
 ];
 
 export default function JsonToFormatter() {
-  const name = "json-formatter";
+  const name = "json-to-formatter";
 
   const [settings, setSettings] = useSettings(name, {
     compress: false,
-    unEscape: false,
-    notPrettier: false
+    unEscape: true
   });
 
   const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
@@ -51,56 +50,38 @@ export default function JsonToFormatter() {
   );
 
   const transformer = useCallback(
-    ({ value }) => {
-      return prettifyJson(value, settings);
+    async ({ value }) => {
+      let options: FormatOption = {
+        expand: true
+      };
+      if (settings.compress) {
+        options.expand = false;
+      }
+      if (settings.unEscape) {
+        options.unscape = true;
+      }
+
+      let ret = await FmtJson(value, options);
+      let err = "";
+      if (!ret.success) {
+        err = ret.errMsg;
+      }
+      let result: TransformResult = {
+        result: ret.result,
+        prettier: false,
+        err: err
+      };
+      return result;
     },
     [settings]
   );
-
-  function yasuo(t, e) {
-    if (1 === t || 3 === t) {
-      for (
-        var n = [], i = !1, o = 0, r = (e = e.split("\n").join(" ")).length;
-        o < r;
-        o++
-      ) {
-        var a = e.charAt(o);
-        i && a === i
-          ? "\\" !== e.charAt(o - 1) && (i = !1)
-          : i || ('"' !== a && "'" !== a)
-          ? i || (" " !== a && "\t" !== a) || (a = "")
-          : (i = a),
-          n.push(a);
-      }
-      e = n.join("");
-    }
-    (2 !== t && 3 !== t) ||
-      (e = e.replace(/\\/g, "\\\\").replace(/\"/g, '\\"')),
-      4 === t && (e = e.replace(/\\\\/g, "\\").replace(/\\\"/g, '"'));
-    return e;
-  }
-
-  async function prettifyJson(value: string, settings: Settings) {
-    if (settings.unEscape) {
-      value = yasuo(4, value);
-    }
-    let str = JSON.stringify(JSON.parse(value), null, 1);
-    if (settings.compress) {
-      str = yasuo(1, str);
-      settings.notPrettier = true;
-    } else {
-      settings.notPrettier = false;
-    }
-    setSettings(settings);
-    return str;
-  }
 
   return (
     <ConversionPanel
       transformer={transformer}
       editorTitle="JSON"
       editorLanguage="json"
-      editorDefaultValue={"jsonRaw"}
+      editorDefaultValue="jsonRaw"
       resultTitle="格式化JSON"
       resultLanguage={"json"}
       editorSettingsElement={getSettingsElement}
