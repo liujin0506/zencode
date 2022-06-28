@@ -107,7 +107,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
           prettyResult = result.result;
           prettier = result.prettier;
           errMsg = result.err;
-          console.log(result);
+          console.log(value);
         }
         if (prettier) {
           prettyResult = await prettierWorker.send({

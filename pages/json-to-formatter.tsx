@@ -22,15 +22,21 @@ const formFields = [
     type: InputType.SWITCH,
     key: "unEscape",
     label: "去除转义"
+  },
+  {
+    type: InputType.SWITCH,
+    key: "escape",
+    label: "结果转义"
   }
 ];
 
 export default function JsonToFormatter() {
-  const name = "json-to-formatter";
+  const name = "json2formatter";
 
   const [settings, setSettings] = useSettings(name, {
     compress: false,
-    unEscape: true
+    unEscape: true,
+    escape: false
   });
 
   const getSettingsElement = useCallback<EditorPanelProps["settingElement"]>(
@@ -59,6 +65,9 @@ export default function JsonToFormatter() {
       }
       if (settings.unEscape) {
         options.unscape = true;
+      }
+      if (settings.escape) {
+        options.escape = true;
       }
 
       let ret = await FmtJson(value, options);

@@ -23,8 +23,8 @@ const ESCAPES_MAP = [
 ];
 
 const MESSAGES_MAP = {
-  err: () => `解析错误，JSON 错误过多！`,
-  war: rowIdx => `格式化 ${rowIdx} 行, JSON 异常!`,
+  err: () => `非正常Json转换！`,
+  war: rowIdx => `非正常Json转换, 行数 ${rowIdx} !`,
   scc: rowIdx => `成功格式化 ${rowIdx} 行!`,
   val: rowIdx => `第 ${rowIdx} 行, 值异常！`,
   ost: rowIdx => `第 ${rowIdx} 行, 期望是一个字符串！`,
