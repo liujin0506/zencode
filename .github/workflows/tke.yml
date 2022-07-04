@@ -60,7 +60,7 @@ jobs:
         chmod u+x ./kustomize
 
     - name: Set up ~/.kube/config for connecting TKE cluster
-      uses: TencentCloud/tke-cluster-credential-action@v1
+      uses: liujin0506/tke-cluster-credential-action@master
       with:
         secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
         secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
