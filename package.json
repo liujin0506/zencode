@@ -1,0 +1,101 @@
+{
+  "name": "zencode",
+  "version": "1.0.1",
+  "repository": "https://github.com/liujin0506/zencode",
+  "author": "liujin0506 <liujin0506@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev:inspect": "NODE_OPTIONS=\"--inspect\" next dev",
+    "dev": "next dev",
+    "start": "next start",
+    "format": "prettier --write '**/*.ts' '**/*.tsx'",
+    "build": "next build",
+    "now-build": "next build",
+    "postinstall": "patch-package",
+    "build:analyze": "ANALYZE=true yarn build",
+    "build:docker": "docker build -t liujin0506/zencode-frontend:v8 .",
+    "build:push": "docker push liujin0506/zencode-frontend:v8"
+  },
+  "engines": {
+    "node": "19.x"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-flow-strip-types": "^7.16.0",
+    "@babel/plugin-transform-typescript": "^7.16.1",
+    "@babel/standalone": "^7.14.7",
+    "@iarna/toml": "^3.0.0",
+    "@monaco-editor/react": "^4.2.1",
+    "@svgr/core": "^5.5.0",
+    "@svgr/plugin-jsx": "^5.5.0",
+    "@types/jsonld": "^1.5.5",
+    "autoprefixer": "^10.2.6",
+    "axios": "^0.21.1",
+    "babel-plugin-json-to-proptypes": "^0.1.0",
+    "babel-plugin-object-styles-to-template": "^0.2.2",
+    "clipboard-copy": "^4.0.1",
+    "css-to-tailwind": "^1.0.3",
+    "evergreen-ui": "^4.28.0",
+    "flowgen": "^1.14.1",
+    "fmt-to-json": "^1.0.4",
+    "formik": "^2.2.9",
+    "generate-schema": "^2.6.0",
+    "gofmt.js": "^0.0.2",
+    "html2pug": "^4.0.0",
+    "htmltojsx": "^0.3.0",
+    "is-svg": "^4.3.1",
+    "json-schema-to-typescript": "^10.1.4",
+    "json-to-go": "gist:0d0b8324131c80eeb7e1df20001be32f",
+    "json-ts": "^1.6.4",
+    "json_typegen_wasm": "^0.7.0",
+    "jsonld": "^5.2.0",
+    "jsonschema-protobuf": "^1.0.2",
+    "lodash": "^4.17.21",
+    "markdown": "^0.5.0",
+    "monaco-editor": "^0.34.0",
+    "next": "11.1.3",
+    "nprogress": "^0.2.0",
+    "postcss": "^8.3.5",
+    "postcss-js": "^3.0.3",
+    "prettier": "^1.18.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^11.0.1",
+    "recast": "^0.20.5",
+    "svg-to-dataurl": "^1.0.0",
+    "svgo": "^1.3.2",
+    "tailwindcss": "^2.2.4",
+    "tempy": "^1.0.1",
+    "text-encoding-utf-8": "^1.0.2",
+    "transform-json-types": "^0.7.0",
+    "ts-json-schema-generator": "^0.93.0",
+    "typescript": "4.3.4",
+    "xml-js": "^1.6.11",
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.170",
+    "@types/node": "^15.12.5",
+    "@types/prettier": "^2.3.0",
+    "@types/react": "^17.0.11",
+    "@types/svgo": "^1.3.3",
+    "husky": "^4.2.5",
+    "imagemin-lint-staged": "^0.4.0",
+    "lint-staged": "^11.0.0",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.0.0",
+    "pretty-quick": "^3.1.1",
+    "ui-box": "2.1.0",
+    "webpack": "^4.46.0",
+    "worker-loader": "^2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./assets/*/*.svg": [
+      "imagemin-lint-staged"
+    ]
+  }
+}
