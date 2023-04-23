@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build . --file DockerfileGithub --tag liujin0506/zencode-frontend:$(date +%s)
+        run: docker build . --file DockerfileGithub --tag liujin0506/zencode-frontend:v${{ github.run_number }}
 
       - name: Docker Login
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push liujin0506/zencode-frontend:$(date +%s)
+        run: docker push liujin0506/zencode-frontend:v${{ github.run_number }}
