@@ -6,7 +6,7 @@ RUN apk add --no-cache libc6-compat git libtool automake autoconf nasm gcc make 
 
 WORKDIR /app
 COPY . ./
-RUN yarn config set registry https://registry.npm.taobao.org && yarn install --frozen-lockfile  && export NODE_OPTIONS=--openssl-legacy-provider && yarn build
+RUN yarn config set registry https://registry.npm.taobao.org && rm -f yarn.lock && yarn install --frozen-lockfile  && export NODE_OPTIONS=--openssl-legacy-provider && yarn build
 
 
 ENV NODE_ENV production
