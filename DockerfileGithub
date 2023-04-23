@@ -4,8 +4,8 @@ FROM node:18-alpine
 RUN apk add --no-cache libc6-compat git libtool automake autoconf nasm gcc make g++ zlib-dev supervisor && export NODE_OPTIONS=--openssl-legacy-provider
 
 WORKDIR /app
-COPY . ./
-RUN rm -f yarn.lock && yarn add --dev @types/react && yarn install --frozen-lockfile && export NODE_OPTIONS=--openssl-legacy-provider && yarn build
+
+RUN rm -f yarn.lock && yarn install --frozen-lockfile && export NODE_OPTIONS=--openssl-legacy-provider && yarn build
 
 
 ENV NODE_ENV production
