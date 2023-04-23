@@ -16,9 +16,6 @@
     "build:docker": "docker build -t liujin0506/zencode-frontend:v8 .",
     "build:push": "docker push liujin0506/zencode-frontend:v8"
   },
-  "engines": {
-    "node": "19.x"
-  },
   "dependencies": {
     "@babel/plugin-transform-flow-strip-types": "^7.16.0",
     "@babel/plugin-transform-typescript": "^7.16.1",
