@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Pane } from "evergreen-ui";
+import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
 import Navigator from "@components/Navigator";
 import "@styles/main.css";
 
@@ -8,9 +8,11 @@ import Router, { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
 import Head from "next/head";
 import { Meta } from "@components/Meta";
+import { useDarkMode } from "@hooks/useDarkMode";
 
 export default function App(props) {
   const router = useRouter();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   useEffect(() => {
     let timer;
@@ -73,6 +75,16 @@ export default function App(props) {
           <span className="site-title"> - 代码片段记录</span>
         </Pane>
         <Pane display="flex" alignItems={"center"}>
+          <Tooltip content={isDarkMode ? "明亮模式": "暗黑模式"}>
+            <IconButton
+              height={20}
+              marginRight={10}
+              icon="moon"
+              onClick={toggleDarkMode}
+            />
+          </Tooltip>
+        </Pane>
+        <Pane display="flex" alignItems={"center"}>
           <a
             href="https://github.com/liujin0506/zencode/issues"
             target="_blank"
@@ -85,7 +97,12 @@ export default function App(props) {
           </a>
         </Pane>
       </Pane>
-      <Pane display="flex" flexDirection="row">
+      <Pane
+        backgroundColor="#FFFFFF"
+        className={isDarkMode ? "dark" : "light"}
+        display="flex"
+        flexDirection="row"
+      >
         <Navigator />
         <Component {...pageProps} />
       </Pane>

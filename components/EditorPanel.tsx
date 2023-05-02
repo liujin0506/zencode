@@ -189,6 +189,7 @@ export default function EditorPanel({
         alignItems={"center"}
         borderBottom
         zIndex={2}
+        backgroundColor="#FFFFFF"
         flexShrink={0}
       >
         <Pane flex={1}>
@@ -210,6 +211,7 @@ export default function EditorPanel({
                 alignItems="center"
                 justifyContent="center"
                 flexDirection="column"
+                backgroundColor="#FFFFFF"
               >
                 <FilePicker
                   width={"100%"}
